@@ -1,5 +1,5 @@
-#include <stdint.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -10,8 +10,24 @@ void caesar_decrypt(void)
     char *letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     char *letters_lower = "abcdefghijklmnopqrstuvwxyz";
     int key;
-    puts("Enter key:");
+    puts("Enter key pass:");
     scanf("%d", &key);
+
+    if(!scanf("%d", &key) || key < 0)
+    {
+        invalid_args();
+        exit(1);
+    }
+
+    if(key > 26) 
+    {
+        while (key >= 26)
+        {
+            key = key % 26;
+        }
+        
+    }
+
     static char msg[15];
     puts("Enter encrypted msg:");
     scanf("%s", msg);
@@ -21,7 +37,7 @@ void caesar_decrypt(void)
         if(isdigit(msg[i]))
         {
             invalid_args();
-            exit(EXIT_SUCCESS);
+            exit(1);
         }
     }
 
