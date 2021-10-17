@@ -9,16 +9,16 @@ void caesar_decrypt(void)
 {
     char *letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     char *letters_lower = "abcdefghijklmnopqrstuvwxyz";
+    static char msg[15];
     int key;
-    puts("Enter key pass:");
-    scanf("%d", &key);
+    puts("Enter key pass (positive number only):");
+    int check = scanf("%d", &key);
 
-    if(!scanf("%d", &key) || key < 0)
+    if(check != 1 || key < 0)
     {
         invalid_args();
-        exit(1);
     }
-
+ 
     if(key > 26) 
     {
         while (key >= 26)
@@ -28,7 +28,6 @@ void caesar_decrypt(void)
         
     }
 
-    static char msg[15];
     puts("Enter encrypted msg:");
     scanf("%s", msg);
 
@@ -37,7 +36,6 @@ void caesar_decrypt(void)
         if(isdigit(msg[i]))
         {
             invalid_args();
-            exit(1);
         }
     }
 
@@ -70,6 +68,8 @@ void caesar_decrypt(void)
         }       
     }
     
+    
     printf("The decrypted msg is: %s", msg);
+
 }
 
