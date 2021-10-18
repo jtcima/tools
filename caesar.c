@@ -32,7 +32,6 @@ void caesar_decrypt(void)
         {
             key = key % 26;
         }
-        
     }
 
     puts("Enter encrypted msg:");

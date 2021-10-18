@@ -5,6 +5,8 @@
 
 int main(int argc, char** argv)
 {
+    
+    //startup();
     caesar_decrypt();
     return 0;
 }
