@@ -4,17 +4,24 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "error.h"
+#include "tools.h"
 
 void caesar_decrypt(void)
 {
     char *letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     char *letters_lower = "abcdefghijklmnopqrstuvwxyz";
-    static char msg[15];
+    char msg[CAESAR_LEN];
     int key;
-    puts("Enter key pass (positive number only):");
+    puts("Enter key pass (enter positive number only):");
     int check = scanf("%d", &key);
+    int c = getchar();
 
-    if(check != 1 || key < 0)
+    if(c != '\n' && c != EOF)
+    {
+        invalid_args();
+    }
+    
+    if (check != 1 || key < 0)
     {
         invalid_args();
     }
@@ -29,7 +36,7 @@ void caesar_decrypt(void)
     }
 
     puts("Enter encrypted msg:");
-    scanf("%s", msg);
+    fgets(msg, CAESAR_LEN, stdin);
 
     for(int i = 0; msg[i] != '\0'; i++)
     {
@@ -68,8 +75,6 @@ void caesar_decrypt(void)
         }       
     }
     
-    
     printf("The decrypted msg is: %s", msg);
-
 }
 
