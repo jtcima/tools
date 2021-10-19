@@ -5,6 +5,9 @@
 
 int main(int argc, char** argv)
 {
-    caesar_decrypt();
+    
+    //startup();
+    //caesar_decrypt();
+    letter_freq();
     return 0;
 }

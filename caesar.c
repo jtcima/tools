@@ -4,20 +4,28 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "error.h"
+#include "tools.h"
 
 void caesar_decrypt(void)
 {
     char *letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     char *letters_lower = "abcdefghijklmnopqrstuvwxyz";
-    static char msg[50];
+    char msg[CAESAR_LEN];
     int key;
-    puts("Enter key pass (positive number only):");
-    int check = scanf("%d", &key);
-
-    if(check != 1 || key < 0)
+    //puts("Enter key pass (enter positive number only):");
+    //int check = scanf("%d", &key);
+    //int c = getchar();
+/*
+    if(c != '\n' && c != EOF)
     {
         invalid_args();
     }
+    
+    if (check != 1 || key < 0)
+    {
+        invalid_args();
+    }
+
  
     if(key > 26) 
     {
@@ -25,12 +33,14 @@ void caesar_decrypt(void)
         {
             key = key % 26;
         }
-        
     }
+*/
 
     puts("Enter encrypted msg:");
-    scanf("%s", msg);
-
+    fgets(msg, CAESAR_LEN, stdin);
+    char msgcpy[CAESAR_LEN];
+   
+/*
     for(int i = 0; msg[i] != '\0'; i++)
     {
         if(isdigit(msg[i]))
@@ -38,38 +48,49 @@ void caesar_decrypt(void)
             invalid_args();
         }
     }
-
-    for(int i = 0; msg[i] != '\0'; i++)
+*/
+    for(key = 1; key < 26; key++)
     {
-        if(msg[i] >= 'a' && msg[i] <= 'z')
+        for(int i = 0; msg[i] != '\0';i++)
         {
-            if((strchr(letters_lower, msg[i])-key) < letters_lower)
+            if(msg[i] == ' ')
             {
-                int pos = strlen(letters_lower)-(key-(strchr(letters_lower, msg[i]) - letters_lower));
-                msg[i] = letters_lower[pos];
+                msgcpy[i] = ' ';
+                i++; 
             }
-            else
+            
+            if(msg[i] >= 'a' && msg[i] <= 'z')
             {
-                msg[i] = *(strchr(letters_lower, msg[i])-key);
+                if((strchr(letters_lower, msg[i])-key) < letters_lower)
+                {
+                    int pos = strlen(letters_lower)-(key-(strchr(letters_lower, msg[i]) - letters_lower));
+                    msgcpy[i] = letters_lower[pos];
+                }
+                else
+                {
+                    msgcpy[i] = *(strchr(letters_lower, msg[i])-key);
+                }
             }
-        }
 
-        if(msg[i] >= 'A' && msg[i] <= 'Z')
-        {
-            if((strchr(letters, msg[i])-key) < letters)
+            if(msg[i] >= 'A' && msg[i] <= 'Z')
             {
-                int pos = strlen(letters)-(key-(strchr(letters, msg[i]) - letters));
-                msg[i] = letters[pos];
-            }
-            else
-            {
-                msg[i] = *(strchr(letters, msg[i])-key);
-            }
-        }       
+                if((strchr(letters, msg[i])-key) < letters)
+                {
+                    int pos = strlen(letters)-(key-(strchr(letters, msg[i]) - letters));
+                    msgcpy[i] = letters[pos];
+                }
+                else
+                {
+                    msgcpy[i] = *(strchr(letters, msg[i])-key);
+                }
+            }       
+        }
+    
+    
+        printf("The decrypted msg %d is: %s\n", key, msgcpy);
+
     }
     
-    
-    printf("The decrypted msg is: %s", msg);
 
 }
 

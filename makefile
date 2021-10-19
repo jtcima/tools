@@ -1,4 +1,4 @@
-FILE= startup.c caesar.c tools.c error.c
+FILE= startup.c caesar.c tools.c error.c count.c
 COMMAND = gcc 
 INCLUDE = -I./tools
 FLAGS = -Wall -g -O0
