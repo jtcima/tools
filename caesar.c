@@ -9,7 +9,7 @@ void caesar_decrypt(void)
 {
     char *letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     char *letters_lower = "abcdefghijklmnopqrstuvwxyz";
-    static char msg[15];
+    static char msg[50];
     int key;
     puts("Enter key pass (positive number only):");
     int check = scanf("%d", &key);
