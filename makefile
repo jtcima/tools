@@ -1,4 +1,4 @@
-FILE= startup.c caesar.c tools.c error.c
+FILE= startup.c decrypt.c tools.c error.c freq.c permute.c
 COMMAND = gcc 
 INCLUDE = -I./tools
 FLAGS = -Wall -g -O0
