@@ -8,6 +8,7 @@ int main(int argc, char** argv)
     
     //startup();
     //caesar_decrypt();
-    letter_freq();
+    subsitution();
+    
     return 0;
 }

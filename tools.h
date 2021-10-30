@@ -4,6 +4,7 @@
 #define CAESAR_LEN 50000
 
 void caesar_decrypt(void);
-void letter_freq(void);
+void letter_freq(char* buf);
+void subsitution();
 
 #endif
