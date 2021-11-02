@@ -7,10 +7,10 @@ int main(int argc, char** argv)
 {
     //startup();
     //caesar_decrypt();
-    //etter_freq();
+    //letter_freq();
     //input_to_permute();
     //vigenere_decode();
-    
+    com_letters_subs();
     
     return 0;
 }
