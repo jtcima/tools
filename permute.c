@@ -1,7 +1,7 @@
 // C program to print all permutations with duplicates allowed
 #include <stdio.h>
 #include <string.h>
-#include "tools.h"
+#include "config.h"
  
 /* Function to swap values at two pointers */
 void swap(char *x, char *y)
@@ -41,7 +41,7 @@ else
 }
  
 /* Driver program to test above functions */
-void input_to_permute()
+void input_to_permute(void)
 {
     char str[STRING_LEN];
     puts("Enter the string for generating permutation: ");

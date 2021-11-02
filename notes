@@ -1,22 +1,6 @@
-    //puts("Enter key pass (enter positive number only):");
-    //int check = scanf("%d", &key);
-    //int c = getchar();
-/*
-    if(c != '\n' && c != EOF)
-    {
-        invalid_args();
-    }
-    
-    if (check != 1 || key < 0)
-    {
-        invalid_args();
-    }
+ update letter_freq
+
+ fix vigenere_decoder
  
-    if(key > 26) 
-    {
-        while (key >= 26)
-        {
-            key = key % 26;
-        }
-    }
-*/
+
+move fill function

@@ -2,47 +2,78 @@
 #include <string.h>
 #include <math.h>
 #include <stdlib.h>
+#include "config.h"
 
+char letters[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+char msg[STRING_LEN];
+FILE* key;
 
-char* addLetter(char* string, char *c) {
-    char* result = malloc(sizeof(string) + 2);
-    strcpy(result, string);
-    strncat(result, c, 1);
-    return result;
-}
-
-char* removeLetter(char* string, char *c) {
-    char* result = malloc(sizeof(string));
-    int j = 0;
-    for (int i = 0; i < strlen(string); i++) {
-        if (string[i] != *c) {
-            result[j++] = string[i];
+void keygen()
+{
+    
+    for (int i = 0; i < strlen(letters); i++)
+    {
+        for (int j = 0; j < strlen(letters); j++)
+        {
+            for (int k = 0; k < strlen(letters); k++)
+            {
+                for(int l = 0; l < strlen(letters); l++)
+                {
+                    for(int m = 0; m < strlen(letters); m++)
+                    {
+                        for (int n = 0; n < strlen(letters); n++)
+                        {
+                            
+                            key = fopen("key.txt", "a");
+                            fprintf(key,"%c%c%c%c%c%c\n", letters[i], letters[j], letters[k], letters[l], letters[m], letters[n]);
+                            fclose(key);
+                            
+                            //printf("%c%c%c%c%c%c\n", letters[i], letters[j], letters[k], letters[l], letters[m], letters[n]);
+                        }
+                    }
+                }
+            }
         }
     }
-    result[j] = '\0';
-
-    return result;
 }
 
-void makeAnagram(char *anagram, char *letters) {
-
-    if (*letters == '\0') {
-        printf("%s\n", anagram);
-        return;
-    }
-
-    char *c = letters;
-    while (*c != '\0') {
-        makeAnagram(addLetter(anagram, c),
-                    removeLetter(letters, c));
-        c++;
-    }
-
+char* input()
+{
+    puts("Enter encrypted msg:");
+    fgets(msg, STRING_LEN, stdin);
+    return msg;
 }
+
+void generate(char* input_string)
+{
+    char x;
+    char res[strlen(letters)][strlen(input_string)];
+    for(int i = 0; i < strlen(input_string)-1; i++)
+    {
+        for(int j = 0; j < strlen(letters); j++)
+        {
+            x = (input_string[i] - letters[j] + 26) %26;
+            x += 'A';
+            res[j][i] = x;
+        }         
+    }
+
+    for(int i = 0; i < sizeof(res)/sizeof(res[0]); i++)
+    {
+        for (int j = 0; j < sizeof(res[0])/sizeof(res[0][0]); j++)
+        {
+            printf("%c", res[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+
 
 int main() {
 
-    makeAnagram("", "1234");
+    keygen();
+    //generate(input());
 
     return 0;
 }

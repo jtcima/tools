@@ -1,4 +1,4 @@
-FILE= startup.c decrypt.c tools.c error.c freq.c permute.c
+FILE= startup.c util.c caesar.c tools.c error.c freq.c permute.c vigenere_decoder.c
 COMMAND = gcc 
 INCLUDE = -I./tools
 FLAGS = -Wall -g -O0
